@@ -1,0 +1,52 @@
+doctype html
+html(lang='zh-CN')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')  
+    meta(name='keywords',content='#{keywords ? keywords : "water,business,system"}')
+    meta(name='description',content='#{description ? description : "water company system"}')
+    link(href="/libs/bootstrap/dist/css/bootstrap.min.css",rel="stylesheet")
+    link(href="/libs/font-awesome/css/font-awesome.css",rel="stylesheet")
+    link(href="/libs/metisMenu/dist/metisMenu.min.css",rel="stylesheet")
+    link(href="/libs/bootstrap-table/dist/bootstrap-table.min.css",rel="styleSheet")
+    link(href="/stylesheets/style.css",rel="stylesheet")
+    title= title
+  body
+    include header
+    .container-fluid.wrap
+      aside.sidebar
+        ul.nav.metismenu#sidebarMenu
+          li
+            a(href='#')
+              i.fa.fa-dashboard.fa-fw
+              span.sidebar-nav-item hello
+          li
+            a(href='#')
+              i.fa.fa-edit.fa-fw
+              span.sidebar-nav-item hello
+              i.fa.arrow
+            ul.fa-ul.nav
+              li
+                a(href='')
+                  i.fa.fa-edit.fa-fw
+                  span.sidebar-nav-item hello
+              li
+                a(href='#')
+                  i.fa.fa-edit.fa-fw
+                  span.sidebar-nav-item hello
+          li
+            a(href='#')
+              i.fa.fa-table.fa-fw
+              span.sidebar-nav-item hello
+      section.content
+        .row
+          .col-lg-12
+            block wrap
+    script(src="libs/jquery/dist/jquery.min.js",type="text/javascript",charset="utf-8")
+    script(src="libs/bootstrap/dist/js/bootstrap.min.js",type="text/javascript",charset="utf-8")
+    script(src="libs/metisMenu/dist/metisMenu.min.js",type="text/javascript",charset="utf-8")
+    script(src="libs/bootstrap-table/dist/bootstrap-table.min.js",type="text/javascript",charset="utf-8")
+    script(src="javascripts/common.js",type="text/javascript",charset="utf-8")  
+    
+    

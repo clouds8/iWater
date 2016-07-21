@@ -1,0 +1,26 @@
+{
+  "name": "iWater",
+  "description": "",
+  "main": "",
+  "authors": [
+    "clouds8 <clouds8@sina.cn>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "vue": "^1.0.26",
+    "metisMenu": "^2.5.2",
+    "font-awesome": "fontawesome#^4.6.3",
+    "bootstrap-table": "^1.11.0"
+  }
+}
