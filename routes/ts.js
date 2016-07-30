@@ -65,7 +65,7 @@ router.get('/watpro', function (req, res, next) {
   //   }
   // });
   WatPro.find()
-  .populate('ladder1.items','name price')
+  .populate('ladder1.items', 'name price')
   .exec(function (err, results) {
     if (err) {
       console.log(err);
@@ -108,18 +108,33 @@ router.get('/addwatpro', function (req, res, next) {
   });
 });
 
+router.get('/acco', function (req, res, next) {
+  console.log('in the acco');
+  Acco.find()
+  .populate('watPro', 'name')
+  .exec(function (err, results) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log('show the acco');
+      res.json(results);
+    }
+  })
+})
+
 router.get('/addacco', function (req, res, next) {
   console.log('insect the Acco');
   var tempAcco = new Acco({
-    userID: '440871177208237321',
-    userName: '张志欢',
+    custID: '440871177208237321',
+    custName: '张志欢4',
     tele: '8613234552341',
     addre: '深南大道3622号',
     meterID: 'HZ39235',
     meterType: '机械表',
     payMode: '后付费',
     famiNum: 3,
-    Freq: '1.2.3.4.5.6.7.8.9.10.11.12'
+    Freq: [1,2,3,4,5,6,7,8,9,10,11,12]
   });
   // WatPro.findOne().populate('ladder1.items').exec(function (err, watpro) {
   //   if (err) {
@@ -174,15 +189,42 @@ router.get('/auth', function (req, res, next) {
 
 router.get('/addauth', function (req, res, next) {
   console.log('in the auth');
-  var tempAuth = {
-    text: '基础数据',
+
+
+  var tempAuth1 = {
+    text: '系统设置',
     parentID: null,
     href: null,
-    icon: 'fa',
+    icon: 'fa fa-home fa-fw',
     depart: '营业'
   }
-  var auth = new Auth(tempAuth);
-  auth.save(function (err, data) {
+  var tempAuth2 = {
+    text: '账期管理',
+    parentID: null,
+    href: null,
+    icon: 'fa fa-home fa-fw',
+    depart: '营业'
+  }
+  var tempAuth3 = {
+    text: '收费管理',
+    parentID: null,
+    href: null,
+    icon: 'fa fa-home fa-fw',
+    depart: '营业'
+  }
+  var tempAuth4 = {
+    text: '开户管理',
+    parentID: '5790492b94a8c1d59a049295',
+    href: null,
+    icon: 'fa fa-home fa-fw',
+    depart: '营业'
+  }
+
+  var tempAuths = [tempAuth1, tempAuth2, tempAuth3, tempAuth4];
+
+
+  // var auth = new Auth(tempAuth);
+  Auth.insertMany(tempAuths, function (err, data) {
     if (err) {
       console.log(err);
     } else {

@@ -1,11 +1,69 @@
 extends ../shared/layout
 block wrap
-  p 账户管理
-  p 账户管理
-  p 账户管理
-  p 账户管理
-  p 账户管理
-  p 账户管理
+  div
+    h1.page-header= title
+    form(method="", action="").form-horizontal 
+      .form-group
+        .col-md-3
+          input(type="text", placeholder="姓名").form-control
+        .col-md-3
+          input(type="text", placeholder="客户编码").form-control
+        .col-md-3  
+          input(type="text", placeholder="水表编码").form-control#meterID
+        .col-md-3
+          button(type="button").btn.btn-link 高级查询
+          button(type="button").btn.btn-info 查找
+          button(type="button").btn.btn-info 开户
+      .form-group
+        .col-md-3  
+          input(type="text", placeholder="身份证号").form-control
+        //- .col-md-3
+        //-   .checkbox  
+        //-     label
+        //-       input(type="checkbox")
+        //-       |是否混合用水
+        .col-md-3  
+          input(type="text", placeholder="安装地址").form-control#addre
+    //- table.table(data-toggle="table" data-url="http://localhost:3000/business/accos" data-pagination='true' data-striped='true' data-detail-view='false' data-side-pagination='server' data-query-params=queryParams)
+    //- table.table(data-toggle="table" data-url="http://localhost:3000/business/accos" data-pagination='true' data-striped='true' data-detail-view='false' 	data-page-list='[10, 25, 50, 100, All]' data-page-number=1 	data-page-size=5 data-query-params=queryParams)
+    table(data-toggle="table" data-url="http://localhost:3000/business/accos" 
+    data-pagination='true' data-striped='true' data-detail-view='false' 
+    data-side-pagination='server' data-page-list='[2, 3, 5, 10, 25, 50, 100, All]' 
+    data-query-params=queryParams2 )
+      thead
+        tr
+          th(data-field = "custName") 姓名
+          th(data-field = "custID") 客户编码
+          th(data-field = "meterID") 水表编码
+          th(data-field = "Freq") 区段
+          th(data-field = "addre") 安装地址
+          th 详情
+        
   
-  p 账户管理
-  p 账户管理
+  script(src="/libs/jquery/dist/jquery.min.js",type="text/javascript",charset="utf-8")
+  script(src="/libs/bootstrap/dist/js/bootstrap.min.js",type="text/javascript",charset="utf-8")
+  script(src="/libs/angular/angular.js",type="text/javascript",charset="utf-8")
+  script(src="/libs/angular-ui-router/release/angular-ui-router.js",type="text/javascript",charset="utf-8")    
+  script(src="/libs/angular-bootstrap/ui-bootstrap.js",type="text/javascript",charset="utf-8")
+  //- script(src="libs/metisMenu/dist/metisMenu.min.js",type="text/javascript",charset="utf-8")
+  script(src="/libs/bootstrap-table/dist/bootstrap-table.min.js",type="text/javascript",charset="utf-8")
+  script(src="/javascripts/common/jquery.ztree.core.js",type="text/javascript",charset="utf-8")  
+  script(src="/libs/bootstrap-treeview/dist/bootstrap-treeview.min.js",type="text/javascript",charset="utf-8")  
+  script(src="/javascripts/common/common.js",type="text/javascript",charset="utf-8")  
+  script.
+    var queryParams2 = function (params) {
+      console.log(params);
+      return {
+        //- custName: encodeURI($.trim($("#custName").val())),
+        custName: encodeURI($.trim('张志欢1')),
+        //- custName: $("#custName"),
+        //- offset: params.pageNumber,
+        //
+        //- offset: params.offset,
+        //- limit: params.limit,
+        //- sort: params.sort,
+        //- order: params.order
+      }
+    }
+  
+      
