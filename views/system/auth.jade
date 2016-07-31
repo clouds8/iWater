@@ -1,0 +1,9 @@
+div(ng-controller = 'authController as auth')
+  h1.page-header= title
+  form(method="", action="").form-horizontal 
+    .form-group
+      .col-md-3
+        input(type="text", placeholder="权限名称").form-control
+      .col-md-3
+        button(type="button").btn.btn-link 查询
+  table(authtable)
