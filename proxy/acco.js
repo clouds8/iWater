@@ -31,7 +31,7 @@ exports.getAccosAndCount =function (params, callback) {
     options.sort = {}
     //如果有排序字段，则看是否为创建时间顺序
     //如果按照时间顺序则观察排序为asc还是desc
-    console.log(params.sort);
+    // console.log(params.sort);
     switch (params.order) {
       case 'asc':
         // options.sort = {params.sort: 1}
