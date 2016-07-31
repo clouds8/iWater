@@ -69,7 +69,7 @@ exports.getAuthsAndCount = function (params, callback) {
 }
 
 //无条件获取所有记录
-function getAll(callback) {
+exports.getAll = function (callback) {
   Auth.find({}, null, function (err, results) {
     if (err) {
       console.error(err);
