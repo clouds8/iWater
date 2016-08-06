@@ -23,10 +23,9 @@ router.get('/router/content', function (req, res, next) {
   res.render('common/content', { title: 'content'});
 });
 
-router.get('/router/auth', function (req, res, next) {
-  res.render('common/content', { title: 'content'});
+router.get('/router/auths', function (req, res, next) {
+  res.render('system/auth/auths', { title: '权限管理'});
 });
-
 
 
 module.exports = router;

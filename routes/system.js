@@ -52,7 +52,7 @@ router.route('/auths/:auth_id')
         res.send(err);
       } else {
         // res.json(result);
-        res.redirect('back');
+        res.status(200).send({error: null});
       }
     });
   })
@@ -70,7 +70,7 @@ router.route('/auths/:auth_id')
     });
   })
 
-router.post('/auth', function (req, res, next) {
+router.post('/auths', function (req, res, next) {
   var auth = req.body;
   authDao.addOrUpdate(auth, function (err, result) {
     if (err) {

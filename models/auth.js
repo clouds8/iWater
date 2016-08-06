@@ -39,20 +39,20 @@ var AuthSchema = new mongoose.Schema({
 var Auth = mongoose.model('Auth', AuthSchema);
 exports.AuthSchema = AuthSchema;
 exports.Auth = Auth;
-exports.setting = setting;
-
-
-var setting = {
-  data: {
-    key: {
-      children: "nodes",
-      name: "text",
-
-    },
-    simpleData: {
-      idKey: "_id",
-      pIdKey: "parentID",
-      rootPId: null
-    }
-  }
-}
+// exports.setting = setting;
+//
+//
+// var setting = {
+//   data: {
+//     key: {
+//       children: "nodes",
+//       name: "text",
+//
+//     },
+//     simpleData: {
+//       idKey: "_id",
+//       pIdKey: "parentID",
+//       rootPId: null
+//     }
+//   }
+// }

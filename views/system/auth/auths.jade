@@ -1,9 +1,53 @@
 div(ng-controller = 'authController as auth')
   h1.page-header= title
   form(method="", action="").form-horizontal 
-    .form-group
-      .col-md-3
-        input(type="text", placeholder="权限名称").form-control
-      .col-md-3
-        button(type="button").btn.btn-link 查询
+    //- .form-group
+    //-   .col-md-3
+    //-     input(type="text", placeholder="权限名称").form-control
+    //-   .col-md-3
+    //-     button(type="button").btn.btn-link 查询
+    //-     button(type="button" ng-click="open()").btn.btn-info 增加
+    
+    .btn-group#toolbar
+      .form-group
+        button.btn.btn-default(type="button" ng-click="open()")
+          i.glyphicon.glyphicon-plus
+        button.btn.btn-default(type="button")
+          i.glyphicon.glyphicon-trash
+      .form-group
+      
+
+  script(type="text/ng-template" id="modalContent.html")
+    .modal-header
+      h3.modal-title {{authModalCtrl.title}}
+    .modal-body
+      form.form-horizontal
+        .form-group(ng-if="authModalCtrl.auth._id")
+          label(for="authID").col-sm-2.control-label ID {{auth}}
+          .col-sm-5
+            input(type="text" placeholder="权限ID" ng-model="authModalCtrl.auth._id" readonly="readonly").form-control#authID
+        .form-group
+          label(for="authName" ).col-sm-2.control-label 权限名称
+          .col-sm-5
+            input(type="text" placeholder="权限名称" ng-model="authModalCtrl.auth.text").form-control#authName
+        .form-group
+          label(for="authParentID").col-sm-2.control-label 父权限ID
+          .col-sm-5
+            input(type="text" placeholder="父权限ID" ng-model="authModalCtrl.auth.parentID").form-control#authParentID
+        .form-group
+          label(for="authHref").col-sm-2.control-label 链接地址
+          .col-sm-5
+            input(type="text" placeholder="权限页面地址" ng-model="authModalCtrl.auth.href").form-control#authHref
+        .form-group
+          label(for="authIcon").col-sm-2.control-label 图标类名
+          .col-sm-5
+            input(type="text" placeholder="图标类名" ng-model="authModalCtrl.auth.icon").form-control#authIcon
+        .form-group
+          label(for="authOrder").col-sm-2.control-label 排序值
+          .col-sm-5
+            input(type="text" placeholder="权限页面地址" ng-model="authModalCtrl.auth.order").form-control#authOrder        
+    .modal-footer
+      button.btn.btn-default(ng-click="authModalCtrl.ok()", type="button") OK
+      button.btn.btn-warning(ng-click="authModalCtrl.cancel()", type="button") Cancel
   table(authtable)
+  

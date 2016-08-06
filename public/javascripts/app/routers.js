@@ -8,6 +8,12 @@ angular.module('water.routers', ['ui.router'])
         controller: 'accoController',
         controllerAs: 'acco'
       })
+      .state('auths', {
+        url: '/auths',
+        templateUrl: '/router/auths',
+        controller: 'authController',
+        controllerAs: 'auth'
+      })
       .state('init', {
         url: '/',
         templateUrl: '/router/init'

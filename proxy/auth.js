@@ -2,6 +2,7 @@
 //
 
 var Auth = require('../models/auth').Auth;
+var mongoose = require('mongoose');
 
 function getAuthQuery(params) {
   var query = {};
@@ -10,6 +11,36 @@ function getAuthQuery(params) {
   }
   return query;
 }
+
+//增加或者更新记录
+exports.addOrUpdate = function (auth, callback) {
+
+  if (auth._id) {
+    var id = auth._id;
+    delete auth._id;
+    //如果父节点ID为空，则节点点击时会展开
+    if(!auth.parentID)
+      auth.selectable = false;
+    Auth.findByIdAndUpdate(id, auth, {new: true, upsert: true,
+      setDefaultsOnInsert: true}, function (err, result) {
+      if (err) {
+        console.log(err);
+        callback(err);
+      } else {
+        // console.log('success~~~');
+        callback(null, result);
+      }
+    });
+  }
+  else {
+    auth._id = new mongoose.Types.ObjectId();
+    Auth.create(auth, callback);
+  }
+};
+
+// exports.authUpdate = function (auth, callback) {
+//
+// }
 
 exports.getAuthsAndCount = function (params, callback) {
   var options = {};
@@ -49,7 +80,7 @@ exports.getAuthsAndCount = function (params, callback) {
     },
     total: function (callback) {
       Auth.count(query, function (err, total) {
-        f (err) {
+        if (err) {
           callback(err);
         } else {
           callback(null, total);
@@ -77,7 +108,7 @@ exports.getAll = function (callback) {
     } else {
       callback(null, results);
     }
-  })；
+  });
 }
 
 //带条件获取记录

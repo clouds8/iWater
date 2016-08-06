@@ -49,8 +49,7 @@ exports.getAccosAndCount =function (params, callback) {
     options.sort = {'createTime': 1}
     }
 
-  // page = page > 0 ? page : 1;
-  // options.skip = (page - 1) * size;
+
   options.limit = size;
   options.skip = offset;
   var query = getAccoQuery(params);
@@ -61,6 +60,7 @@ exports.getAccosAndCount =function (params, callback) {
   //   }
   //   else return callback(null, accos);
   // });
+
   async.parallel({
     accos: function (callback) {
       Acco.find(query, {}, options)
@@ -92,27 +92,4 @@ exports.getAccosAndCount =function (params, callback) {
       });
     }
   });
-  // Acco.find(query, {}, options)
-  //   .populate('watPro', 'name')
-  //   .exec(function (err, accos) {
-  //     if (err) {
-  //       callback(err);
-  //     }
-  //     else {
-  //       Acco.count(query,{})
-  //           .exec(function (err, countResult) {
-  //             if (err) {
-  //               console.error(err);
-  //               callback(err);
-  //             } else {
-  //               var accoAndCount = {
-  //                 acco: accos,
-  //                 count: countResult
-  //               }
-  //               callback(null, accoAndCount);
-  //             }
-  //           });
-  //       // callback(null, accos);
-  //     }
-  //   });
 }

@@ -13,22 +13,6 @@ router.get('/accos', function (req, res, next) {
    * @return {[type]} [description]
    */
   var params = req.query;
-  // console.log('hello');
-  console.log(params);
-  console.log('~~~~~~~~~~~~~~');
-  // accoDao.getAccos(params, function (err, accos) {
-  //   if (err) {
-  //     console.error(err);
-  //   } else {
-  //     var total = accos.length;
-  //     var data = {
-  //       total: 14,
-  //       rows: accos
-  //     }
-  //     console.log(total + '~~~~~~~~~~~~~');
-  //     res.json(data);
-  //   }
-  // });
   accoDao.getAccosAndCount(params, function (err, accoAndCount) {
     console.log('getAccosAndCount');
     if (err) {
