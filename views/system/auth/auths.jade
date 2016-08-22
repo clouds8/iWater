@@ -27,13 +27,18 @@ div(ng-controller = 'authController as auth')
           .col-sm-5
             input(type="text" placeholder="权限ID" ng-model="authModalCtrl.auth._id" readonly="readonly").form-control#authID
         .form-group
-          label(for="authName" ).col-sm-2.control-label 权限名称
+          label(for="authName" ).col-sm-2.control-label 权限名
           .col-sm-5
             input(type="text" placeholder="权限名称" ng-model="authModalCtrl.auth.text").form-control#authName
+        //- .form-group
+        //-   label(for="authParentName").col-sm-2.control-label 父权限
+        //-   .col-sm-5
+        //-     select(ng-options="toBeSelected.name for toBeSelected in authModalCtrl.test" ng-model="authModalCtrl.auth.parentName" ng-click="authModalCtrl.selectParentAuth()").form-control#authParentName
+              //- option( value="") 根目录
         .form-group
-          label(for="authParentID").col-sm-2.control-label 父权限ID
+          label(for="authParentID").col-sm-2.control-label 父权限
           .col-sm-5
-            input(type="text" placeholder="父权限ID" ng-model="authModalCtrl.auth.parentID").form-control#authParentID
+            select(ng-options="BeSelected._id as BeSelected.text for BeSelected in authModalCtrl.choosenParAuths" ng-model="authModalCtrl.auth.parentID" ng-click="authModalCtrl.selectParentAuth()").form-control#authParentID
         .form-group
           label(for="authHref").col-sm-2.control-label 链接地址
           .col-sm-5
@@ -45,9 +50,8 @@ div(ng-controller = 'authController as auth')
         .form-group
           label(for="authOrder").col-sm-2.control-label 排序值
           .col-sm-5
-            input(type="text" placeholder="权限页面地址" ng-model="authModalCtrl.auth.order").form-control#authOrder        
+            input(type="text" placeholder="权限排序值" ng-model="authModalCtrl.auth.order").form-control#authOrder        
     .modal-footer
       button.btn.btn-default(ng-click="authModalCtrl.ok()", type="button") OK
       button.btn.btn-warning(ng-click="authModalCtrl.cancel()", type="button") Cancel
-  table(authtable)
-  
+  table(authtable)  

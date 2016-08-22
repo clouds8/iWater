@@ -23,7 +23,28 @@ nav.navbar.navbar-default.dashboardNav
           a(href='#')
             i.fa.fa-bell.fa-fw
             i.fa.fa-caret-down
-        li
-          a(href='#')
+        li.dropdown
+          a(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false").dropdown-toggle
             i.fa.fa-user.fa-fw
             i.fa.fa-caret-down
+          ul.dropdown-menu
+            //- li
+            //-   a(href="#") {{user.name}}
+            //- li
+            //-   a(href="") Login
+            //- li
+            //-   a(href="#") Setting
+            //- li.divider
+            //- li
+            //-   a(href="#") Logout
+            if user != null || undefined
+              li
+                a(href="#init") 您好，#{user.name}
+              li
+                a(href="#") Setting
+              li.divider
+              li
+                a(href="/api/logout") Logout
+            else
+              li
+                a(href="/html/login.html") Login

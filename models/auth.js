@@ -17,7 +17,7 @@ var AuthSchema = new mongoose.Schema({
     //选中的图标class
     selectedIcon: {type: String},
     //链接
-    href: {type: String, default: '#/'},
+    href: {type: String, default: ''},
     //排序值, 数字越小排越前
     order: {type: Number, default: 10},
 
@@ -40,8 +40,6 @@ var Auth = mongoose.model('Auth', AuthSchema);
 exports.AuthSchema = AuthSchema;
 exports.Auth = Auth;
 // exports.setting = setting;
-//
-//
 // var setting = {
 //   data: {
 //     key: {

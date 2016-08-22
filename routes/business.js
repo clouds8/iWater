@@ -14,7 +14,6 @@ router.get('/accos', function (req, res, next) {
    */
   var params = req.query;
   accoDao.getAccosAndCount(params, function (err, accoAndCount) {
-    console.log('getAccosAndCount');
     if (err) {
       console.error(err);
       res.error(err);

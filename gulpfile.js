@@ -12,7 +12,7 @@ gulp.task('browser-sync', ['nodemon'], function () {
   console.log('~~~~~in the browserSync ~~~~~');
   browserSync.init(null, {
 		proxy: "http://localhost:3000",
-    files: ["public/javascripts/**/*.*", "public/stylesheets/**/*.*", "views/**/*.jade"],
+    files: ["public/javascripts/**/*.*", "public/stylesheets/**/*.*", "public/html/**/*.*", "views/**/*.jade"],
     // reloadDelay: 200,
     browser: ['google-chrome'],
     port: 7000,

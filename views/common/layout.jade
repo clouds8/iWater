@@ -8,24 +8,27 @@ html(lang='zh-CN')
     meta(name='description',content='#{description ? description : "water company system"}')
     link(href="/libs/bootstrap/dist/css/bootstrap.min.css",rel="stylesheet")
     link(href="/libs/bootstrap-table/dist/bootstrap-table.css",rel="stylesheet")
+    link(href="/libs/angular-ui-select/dist/select.css",rel="stylesheet")
     link(href="/libs/font-awesome/css/font-awesome.css",rel="stylesheet")
     link(href="/libs/sweetalert/dist/sweetalert.css",rel="stylesheet")
     link(href="/stylesheets/style.css",rel="stylesheet")
     title= title
   body(ng-app='water')
-    include header
-    .container-fluid.wrap
-      aside.sidebar(ng-controller='sidebarController')
-        div(sidebar)
-      section.content(ng-controller='contentController')
-        .row
-          .col-lg-12
-            div(ui-view='')
+    div(ng-controller='rootController')
+      include header
+      .container-fluid.wrap
+        aside.sidebar(ng-controller='sidebarController')
+          div(sidebar)
+        section.content(ng-controller='contentController')
+          .row
+            .col-lg-12
+              div(ui-view='')
     
     //- include footer
     script(src="/libs/jquery/dist/jquery.min.js",type="text/javascript",charset="utf-8")
     script(src="/libs/bootstrap/dist/js/bootstrap.min.js",type="text/javascript",charset="utf-8")
     script(src="/libs/angular/angular.js",type="text/javascript",charset="utf-8")
+    script(src="/libs/angular-sanitize/angular-sanitize.js",type="text/javascript",charset="utf-8")
     script(src="/javascripts/common/jquery.ztree.core.js",type="text/javascript",charset="utf-8")  
     script(src="/libs/bootstrap-treeview/dist/bootstrap-treeview.min.js",type="text/javascript",charset="utf-8")  
     //- script(src="/javascripts/common/common.js",type="text/javascript",charset="utf-8")  
@@ -33,6 +36,7 @@ html(lang='zh-CN')
     script(src="/libs/angular-bootstrap/ui-bootstrap.js",type="text/javascript",charset="utf-8")  
     script(src="/libs/angular-bootstrap/ui-bootstrap-tpls.js",type="text/javascript",charset="utf-8")  
     script(src="/libs/bootstrap-table/dist/bootstrap-table.min.js",type="text/javascript",charset="utf-8")
+    script(src="/libs/angular-ui-select/dist/select.js",type="text/javascript",charset="utf-8")
     script(src="/libs/sweetalert/dist/sweetalert.min.js",type="text/javascript",charset="utf-8")
 
     script(src="/javascripts/app/services.js",type="text/javascript",charset="utf-8")  

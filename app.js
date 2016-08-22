@@ -4,13 +4,20 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var dbPath = require('./config').DbPath;
+var MongoStore = require('connect-mongo')(session);
 
-var routes = require('./routes/index');
-var business = require('./routes/business');
-var sysmanage = require('./routes/system');
+var api = require('./routes/api');
+var page = require('./routes/indexpage');
+// var routes = require('./routes/index');
+// var business = require('./routes/business');
+// var sysmanage = require('./routes/system');
 
-var users = require('./routes/users');
-var ts = require('./routes/ts');
+// var users = require('./routes/users');
+var loginApi = require('./routes/login');
+var logoutApi = require('./routes/logout');
+// var ts = require('./routes/ts');
 
 
 var app = express();
@@ -26,13 +33,27 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: 'iWater by pino',
+  store: new MongoStore({
+    url: dbPath,
+    collection: 'sessions'
+  })
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
-app.use('/business', business);
-app.use('/system', sysmanage);
-app.use('/ts', ts);
+// app.use('/', routes);
+// app.use('/user', user);
+// app.use('/users', users);
+// app.use('/business', business);
+// app.use('/system', sysmanage);
+// app.use('/ts', ts);
+
+app.use('/', page);
+app.use('/api/login', loginApi);
+app.use('/api/logout', logoutApi);
+app.use('/api', api);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

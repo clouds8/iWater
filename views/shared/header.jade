@@ -11,9 +11,9 @@ nav.navbar.navbar-default.dashboardNav
         span.icon-bar
         
       //左侧项目名   
-      a.navbar-brand(href='#') iWater
+      a.navbar-brand(href='#') iWater2
     #navbar.navbar-collapse.collapse
-      ul.nav.navbar-nav.navbar-right
+      ul.nav.navbar-nav.navbar-right.nav-pills
         li.dropdown
           a(href='#')
             i.fa.fa-envelope.fa-fw
@@ -26,7 +26,15 @@ nav.navbar.navbar-default.dashboardNav
           a(href='#')
             i.fa.fa-bell.fa-fw
             i.fa.fa-caret-down
-        li
-          a(href='#')
+        li.dropdown(role="presentation")
+          a(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false").dropdown-toggle
             i.fa.fa-user.fa-fw
             i.fa.fa-caret-down
+          ul.dropdown-menu
+            li
+              a(href="#") {{user.name}}
+            li
+              a(href="#") Setting
+            li.divider
+            li
+              a(href="#") Logout

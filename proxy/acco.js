@@ -8,10 +8,10 @@ function getAccoQuery(params) {
   if (params.custName) {
     query.custName = {"$regex": params.custName, "$options": "gi"};
   }
-  if (query.meterID) {
+  if (params.meterID) {
     query.meterID = params.meterID;
   }
-  if (query.addre) {
+  if (params.addre) {
     query.addre = {"$regex": params.addre, "$options": "gi"};
   }
   return query;
@@ -64,7 +64,7 @@ exports.getAccosAndCount =function (params, callback) {
   async.parallel({
     accos: function (callback) {
       Acco.find(query, {}, options)
-        .populate('watPro', 'name')
+        .populate('watPros', 'name')
         .exec(function (err, accos) {
           if (err) {
             callback(err);
