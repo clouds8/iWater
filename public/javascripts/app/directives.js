@@ -636,7 +636,7 @@ angular.module('water.directives', ['water.service'])
           '<a class="edit" href="javascript:void(0)" title="Edit">',
           '<i class="fa fa-pencil fa-fw" aria-hidden="true"></i>编辑',
           '</a>',
-          '<a class="detail" href="javascript:void(0)" title="Detail">',
+          '<a class="resetPass"  title="Detail" data-toggle="modal" data-target="#resetPassModal">',
           '<i class="fa fa fa-info fa-fw" aria-hidden="true"></i>重置密码',
           '</a>',
           '<a class="remove" href="javascript:void(0)" title="Remove">',
@@ -649,8 +649,14 @@ angular.module('water.directives', ['water.service'])
         'click .edit': function (e, value, row, index) {
           $scope.open(row);
         },
-        'click .detail': function (e, value, row, index) {
-          alert('You click detail action, row: ' + JSON.stringify(row));
+        'click .resetPass': function (e, value, row, index) {
+          // alert('You click detail action, row: ' + JSON.stringify(row));
+
+          $scope.userToResetPass = row;
+
+          // $('#resetPassModal').on('hidden.bs.modal', function (e) {
+          //   $scope.$emit('resetSelected');
+          // });
         },
         'click .remove': function (e, value, row, index) {
 
@@ -774,9 +780,53 @@ angular.module('water.directives', ['water.service'])
       $scope.$on('refleshUserTable', function (event, params) {
         element.bootstrapTable('destroy');
         createTable();
-      })
+      });
+
+      $scope.$on('resetPassDone', function (event, params) {
+        console.log('receive resetPassDone');
+        $('#resetPassModal').modal('hide');
+        if (params.error) {
+          swal("密码重置失败", error, "error");
+        } else {
+          swal({
+            title: "密码重置成功!",
+            timer: 2000,
+            showConfirmButton: true,
+            type: "success"
+          });
+        }
+      });
+
+//      $scope.$apply(function(scope){
+        $('#resetPassModal').on('hidden.bs.modal', function(){
+          $scope.resetPassForm.userPassword.$rollbackViewValue();
+          $scope.resetPassForm.userPassword.$setUntouched();
+          $scope.userToResetPass.password = null;
+          $scope.resetPassForm.checkPassword.$rollbackViewValue();
+          $scope.resetPassForm.checkPassword.$setUntouched();
+          $scope.userToResetPass.checkPassword = null;
+          console.log('exit with reset null');
+          $scope.$apply();
+        })
+//      });
 
     } //-end link
 
   };//- end return
+}])
+
+.directive('compare', [function () {
+  return {
+    restrict: 'EA',
+    scope: { orgText: '=compare' },
+    require: 'ngModel',
+    link: function (scope, element, attrs, con) {
+      con.$validators.compare = function (v) {
+        return v == scope.orgText;
+      }
+      scope.$watch('orgText', function() {
+        con.$validate();
+      });
+    }
+  }
 }])

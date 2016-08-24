@@ -191,9 +191,46 @@ function ($scope, $uibModalInstance, roleSelected, roleService) {
 
 
 
-//角色管理页面的控制器
+//用户管理页面的控制器
 .controller('userController', ['$scope', '$uibModal', 'userService', 'roleService',
 function ($scope, $uibModal, userService, roleService) {
+
+  $scope.userToResetPass = null;
+
+  // $scope.$on('resetSelected', function () {
+  //   $scope.userToResetPass = null;
+  // })
+
+  $scope.resetPass = function () {
+    if ($scope.userToResetPass && $scope.userToResetPass.password ) {
+      console.log('send pass');
+      console.log($scope.userToResetPass.password);
+      var _user = {
+        _id : $scope.userToResetPass._id,
+        password : $scope.userToResetPass.password
+      }
+      userService.updateUser(_user)
+      .then(function (result) {
+        console.log('update success');
+        $scope.$broadcast('resetPassDone', result);
+        $scope.userToResetPass = null;
+      })
+      .catch(function (err) {
+        console.log('update error');
+        $scope.$broadcast('resetPassDone', err);
+        $scope.userToResetPass = null;
+      })
+    }
+  }
+
+//  $scope.resetPassCancel = function () {
+//    console.log('cancel and reset the pass to null');
+    // $scope.resetPassForm.userPassword.$rollbackViewValue();
+    // $scope.userToResetPass.password = null;
+    // $scope.resetPassForm.checkPassword.$rollbackViewValue();
+    // $scope.userToResetPass.checkPassword = null;
+
+//  }
 
   $scope.open = function (userSelected) {
     var modalInstance = $uibModal.open({
@@ -248,7 +285,7 @@ function ($scope, $uibModal, userService, roleService) {
 }])
 
 
-//
+//用户编辑窗口控制器
 .controller('userModalController', ['$scope', '$uibModalInstance', 'userSelected', 'rolesToBeselected', function ($scope, $uibModalInstance, userSelected, rolesToBeselected) {
   this.user = userSelected;
   if (this.user) {

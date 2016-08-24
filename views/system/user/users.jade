@@ -1,0 +1,103 @@
+div(ng-controller = 'userController as userCtrl')
+  h1.page-header= title
+  form(method="", action="").form-horizontal 
+    .btn-group#toolbar
+      .form-group
+        button.btn.btn-default(type="button", ng-click="open()")
+          i.glyphicon.glyphicon-plus
+        button.btn.btn-default(type="button")
+          i.glyphicon.glyphicon-trash
+      .form-group
+  table(usertable)
+  div.modal.fade#resetPassModal(tabindex="-1" role="dialog" aria-labelledby="modalLabel")
+    div.modal-dialog(role="document")
+      div.modal-content
+        div.modal-header
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") &times;
+          h4.modal-title 重置密码
+        div.modal-body
+          form.form-horizontal(name="resetPassForm")
+          
+            //- pre Model ID: {{userToResetPass._id}}
+            //- pre Model Pass: {{userToResetPass.password}}
+            //- pre Model Pass viewValue: {{resetPassForm.userPassword.$viewValue}}
+            //- pre 合法：{{resetPassForm.userPassword.$valid}}
+            //- pre 密码Model：{{userToResetPass.password}}
+            //- pre 合法：{{resetPassForm.checkPassword.$valid}}
+            //- pre 确认Model：{{userToResetPass.checkPassword}}
+            //- 
+            //- pre {{resetPassForm.checkPassword.$error}}
+            //- pre {{resetPassForm.checkPassword.$error.compare}}
+          
+          
+            div.form-group
+              label(for="userPassword").col-sm-2.control-label 新密码
+              .col-sm-5
+                input(required type="text" name="userPassword" placeholder="请输入新密码" ng-model="userToResetPass.password" ng-minlength="6" ng-maxlength="18").form-control#userPassword      
+                p.text-danger(ng-if="resetPassForm.userPassword.$error.required && resetPassForm.userPassword.$touched") 密码不可为空
+                p.text-danger(ng-if="(resetPassForm.userPassword.$error.minlength || resetPassForm.userPassword.$error.maxlength) && resetPassForm.userPassword.$touched") 密码长度应在6-18位之间  
+            div.form-group
+              label(for="checkPassword").col-sm-2.control-label 确认密码
+              .col-sm-5
+                input(required compare="userToResetPass.password" type="text" name="checkPassword" placeholder="再次输入密码" ng-model="userToResetPass.checkPassword" ng-minlength="6" ng-maxlength="18").form-control#checkPassword
+                p.text-danger(ng-if ="resetPassForm.checkPassword.$error.compare && resetPassForm.checkPassword.$touched") 两次密码输入不一致
+                
+        div.modal-footer
+          button.btn.btn-default(type="button"  data-dismiss="modal" ng-click="resetPassCancel()") Close
+          button.btn.btn-primary(type="button"  ng-click="resetPass()" ng-disabled="resetPassForm.$invalid") Save
+
+  script(type="text/ng-template" id="modalContent.html")
+    .modal-header
+      h3.modal-title {{userModalCtrl.title}}
+    .modal-body
+      form.form-horizontal
+        .form-group(ng-if="userModalCtrl.user._id")
+          label(for="userID").col-sm-2.control-label ID
+          .col-sm-5
+            input(type="text" placeholder="用户ID" ng-model="userModalCtrl.user._id" readonly="readonly").form-control#userID
+        .form-group
+          label(for="userName" ).col-sm-2.control-label 用户名称
+          .col-sm-5
+            input(type="text" placeholder="用户名称" ng-model="userModalCtrl.user.name").form-control#userName
+        .form-group
+          label(for="userDisabled" ).col-sm-2.control-label 是否禁用
+          .col-sm-5
+            .radio#userDisabled
+              label
+                input(type="radio" name="userDisabled" ng-model="userModalCtrl.user.disabled" value="false")
+                | 启用
+              label
+                input(type="radio" name="userDisabled" ng-model="userModalCtrl.user.disabled" value="true")
+                | 禁用          
+        .form-group
+          label(for="userRoles").col-sm-2.control-label 所属角色
+          .col-sm-8
+            ui-select(multiple ng-model="userModalCtrl.user.roles", theme="bootstrap" ng-disabled="userModalCtrl.disabled" close-on-select="false" title="分配角色")
+              ui-select-match(placeholder="select role") {{$item.roleName}}
+              ui-select-choices(repeat="role in userModalCtrl.rolesToBeselected | filter: $$select.search track by role.roleName")
+                div(ng-bind-html='role.roleName | highlight: $select.search')
+    .modal-footer
+      button.btn.btn-default(ng-click="userModalCtrl.cancel()", type="button") Cancel
+      button.btn.btn-primary(ng-click="userModalCtrl.ok()", type="button") OK
+
+
+  //- script(type="text/ng-template" id="modelResetPassword.html")
+  //-   .modal-header
+  //-     h3.modal-title 重置密码
+  //-   .modal-body
+  //-     form.form-horizontal
+  //-       .form-group
+  //-         label(for="userPassword").col-sm-2.control-label 新密码
+  //-         .col-sm-5
+  //-           input(type="password", placeholder="请输入新密码" ng-model="").form-control#userPassword
+  //-       .form-group
+  //-         label(for="checkPassword").col-sm-2.control-label 确认密码
+  //-         .col-sm-5
+  //-           input(type="password", placeholder="请输入新密码" ng-model="").form-control#checkPassword
+  //-   .modal-footer
+  //-     button.btn.btn-default(ng-click=".ok()", type="button") OK
+  //-     button.btn.btn-warning(ng-click=".cancel()", type="button") Cancel
+
+
+  

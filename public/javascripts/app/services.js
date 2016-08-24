@@ -66,6 +66,8 @@ angular.module('water.service', [])
       return $http.delete('api/users/' + userID);
     },
     updateUser: function (user) {
+      console.log('update:');
+      console.log(user);
       return $http.put('api/users/' + user._id, user);
     }
   };
