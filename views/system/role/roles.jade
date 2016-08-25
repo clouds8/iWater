@@ -1,0 +1,46 @@
+div(ng-controller = 'roleController as role')
+  h1.page-header= title
+  form(method="", action="").form-horizontal 
+    .btn-group#toolbar
+      .form-group
+        button.btn.btn-default(type="button", ng-click="open()")
+          i.glyphicon.glyphicon-plus
+        button.btn.btn-default(type="button")
+          i.glyphicon.glyphicon-trash
+      .form-group
+  table(roletable)
+  script(type="text/ng-template" id="modalContent.html")
+    .modal-header
+      h3.modal-title {{roleModalCtrl.title}}
+    .modal-body
+      form.form-horizontal
+        .form-group(ng-if="roleModalCtrl.role._id")
+          label(for="roleID").col-sm-2.control-label ID
+          .col-sm-5
+            input(type="text" placeholder="角色ID" ng-model="roleModalCtrl.role._id" readonly="readonly").form-control#roleID
+        .form-group
+          label(for="roleName" ).col-sm-2.control-label 角色名称
+          .col-sm-5
+            input(type="text" placeholder="角色名称" ng-model="roleModalCtrl.role.roleName").form-control#roleName
+        .form-group
+          label(for="roleDisabled" ).col-sm-2.control-label 是否禁用
+          .col-sm-5
+            .radio#roleDisabled
+              label
+                input(type="radio" name="roleDisabled")
+                | 启用
+              label
+                input(type="radio" name="roleDisabled")
+                | 禁用          
+            //- input(type="radio" name="roleDisabled" ng-model="roleModalCtrl.role.disabled")#roleDisabled
+        .form-group
+          label(for="roleDesc").col-sm-2.control-label 备注
+          .col-sm-5
+            input(type="text" placeholder="备注" ng-model="roleModalCtrl.role.desc").form-control#roleDesc
+        .form-group
+          label(for="roleAuthsTree").col-sm-2.control-label 权限分配
+          .col-sm-5
+            ul.ztree(roleauthtree)#roleAuthsTree
+    .modal-footer
+      button.btn.btn-default(ng-click="roleModalCtrl.cancel()", type="button") Cancel
+      button.btn.btn-primary(ng-click="roleModalCtrl.ok()", type="button") OK
