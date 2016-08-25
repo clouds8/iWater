@@ -31,16 +31,18 @@ div(ng-controller = 'userController as userCtrl')
             //- pre {{resetPassForm.checkPassword.$error.compare}}
           
           
-            div.form-group
+            div.form-group.has-feedback(ng-class="{'has-success': resetPassForm.userPassword.$valid}")
               label(for="userPassword").col-sm-2.control-label 新密码
               .col-sm-5
-                input(required type="text" name="userPassword" placeholder="请输入新密码" ng-model="userToResetPass.password" ng-minlength="6" ng-maxlength="18").form-control#userPassword      
+                input(required type="password" name="userPassword" placeholder="请输入新密码" ng-model="userToResetPass.password" ng-minlength="6" ng-maxlength="18").form-control#userPassword      
+                i.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden="true" ng-if="resetPassForm.userPassword.$valid")
                 p.text-danger(ng-if="resetPassForm.userPassword.$error.required && resetPassForm.userPassword.$touched") 密码不可为空
                 p.text-danger(ng-if="(resetPassForm.userPassword.$error.minlength || resetPassForm.userPassword.$error.maxlength) && resetPassForm.userPassword.$touched") 密码长度应在6-18位之间  
-            div.form-group
+            div.form-group.has-feedback(ng-class="{'has-success': resetPassForm.checkPassword.$valid}")
               label(for="checkPassword").col-sm-2.control-label 确认密码
               .col-sm-5
-                input(required compare="userToResetPass.password" type="text" name="checkPassword" placeholder="再次输入密码" ng-model="userToResetPass.checkPassword" ng-minlength="6" ng-maxlength="18").form-control#checkPassword
+                input(required compare="userToResetPass.password" type="password" name="checkPassword" placeholder="再次输入密码" ng-model="userToResetPass.checkPassword" ng-minlength="6" ng-maxlength="18").form-control#checkPassword
+                i.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden="true" ng-if="resetPassForm.checkPassword.$valid")
                 p.text-danger(ng-if ="resetPassForm.checkPassword.$error.compare && resetPassForm.checkPassword.$touched") 两次密码输入不一致
                 
         div.modal-footer

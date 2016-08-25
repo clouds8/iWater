@@ -195,16 +195,16 @@ function ($scope, $uibModalInstance, roleSelected, roleService) {
 .controller('userController', ['$scope', '$uibModal', 'userService', 'roleService',
 function ($scope, $uibModal, userService, roleService) {
 
+  //记录选中的用户记录
   $scope.userToResetPass = null;
 
   // $scope.$on('resetSelected', function () {
   //   $scope.userToResetPass = null;
   // })
 
+  // 重置密码
   $scope.resetPass = function () {
     if ($scope.userToResetPass && $scope.userToResetPass.password ) {
-      console.log('send pass');
-      console.log($scope.userToResetPass.password);
       var _user = {
         _id : $scope.userToResetPass._id,
         password : $scope.userToResetPass.password
@@ -219,7 +219,7 @@ function ($scope, $uibModal, userService, roleService) {
         console.log('update error');
         $scope.$broadcast('resetPassDone', err);
         $scope.userToResetPass = null;
-      })
+      });
     }
   }
 
