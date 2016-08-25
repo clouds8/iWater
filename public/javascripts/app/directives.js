@@ -691,7 +691,7 @@ angular.module('water.directives', ['water.service'])
 
       var queryParams = function (params) {
         return {
-          userName: params.search,
+          name: params.search,
           offset: params.offset,
           limit: params.limit,
           sort: params.sort,
