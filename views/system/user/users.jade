@@ -67,10 +67,10 @@ div(ng-controller = 'userController as userCtrl')
           .col-sm-5
             .radio#userDisabled
               label
-                input(type="radio" name="userDisabled" ng-model="userModalCtrl.user.disabled" value="false")
+                input(type="radio" name="userDisabled" ng-model="userModalCtrl.user.disabled" ng-value="false")
                 | 启用
               label
-                input(type="radio" name="userDisabled" ng-model="userModalCtrl.user.disabled" value="true")
+                input(type="radio" name="userDisabled" ng-model="userModalCtrl.user.disabled" ng-value="true")
                 | 禁用          
         .form-group
           label(for="userRoles").col-sm-2.control-label 所属角色

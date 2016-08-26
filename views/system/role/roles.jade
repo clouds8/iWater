@@ -27,10 +27,10 @@ div(ng-controller = 'roleController as role')
           .col-sm-5
             .radio#roleDisabled
               label
-                input(type="radio" name="roleDisabled")
+                input(type="radio" name="roleDisabled" ng-model="roleModalCtrl.role.disabled" ng-value="false")
                 | 启用
               label
-                input(type="radio" name="roleDisabled")
+                input(type="radio" name="roleDisabled" ng-model="roleModalCtrl.role.disabled" ng-value="true")
                 | 禁用          
             //- input(type="radio" name="roleDisabled" ng-model="roleModalCtrl.role.disabled")#roleDisabled
         .form-group
