@@ -40,7 +40,8 @@ div(ng-controller = 'roleController as role')
         .form-group
           label(for="roleAuthsTree").col-sm-2.control-label 权限分配
           .col-sm-5
-            ul.ztree(roleauthtree)#roleAuthsTree
+            div.well
+              ul.ztree(roleauthtree ng-model="roleModalCtrl.role.auths")#roleAuthsTree
     .modal-footer
       button.btn.btn-default(ng-click="roleModalCtrl.cancel()", type="button") Cancel
       button.btn.btn-primary(ng-click="roleModalCtrl.ok()", type="button") OK

@@ -31,6 +31,8 @@ angular.module('water.service', [])
     updateAuth: function (auth) {
       return $http.put('api/auths/' + auth._id, auth);
     },
+
+    //直接返回所有权限,没有count,返回值是一个权限对象的数组
     getAuths: function () {
       return $http.get('api/auths');
     }

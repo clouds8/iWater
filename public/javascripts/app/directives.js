@@ -23,7 +23,6 @@ angular.module('water.directives', ['water.service'])
         if (!result) {
           alert('未有权限');
         } else {
-          // var len = result.length;
           var nodes = $.fn.zTree._z.data.transformTozTreeFormat(setting, result);
           element.treeview({
             data: nodes,
@@ -610,19 +609,158 @@ angular.module('water.directives', ['water.service'])
   }; //- end return
 }])
 
+
+//生成角色权限树结构
+// 用scope { '='}的方式
+/*
 .directive('roleauthtree', ['authService', function (authService) {
   return {
     restrict: 'A',
-    link: function ($scope, element, atts, ngModel) {
+    scope: {aus: "="},
+    link: function ($scope, element, atts) {
       //TODO: 生成权限选择ztree 监控提交数据事件
+
+      function onClick(e, treeId, treeNode) {
+        var ztree = $.fn.zTree.getZTreeObj(treeId);
+        ztree.expandNode(treeNode);
+      }
+
       var setting = {
         data: {
+          simpleData:{
+            enable: true,
+            idKey: "_id",
+            pIdKey: "parentID",
+            rootPId: null
+          },
+          key: {
+            name: "text"
+          }
+        },
 
+        check: {
+          enable: "true",
+          chkStyle: "checkbox"
+        },
+
+        view: {
+          dblClickExpand: false,
+          showLine: false
+        },
+
+        callback: {
+          onClick: onClick
         }
       };
 
+      authService.getAuths()
+      .then(function (result) {
+        var tree = $.fn.zTree.init(element, setting, result.data);
+        if ($scope.aus) {
+          var len = $scope.aus.length;
+          while(len--) {
+            var _id = $scope.aus[len]._id;
+            tree.checkNode(tree.getNodeByParam("_id", _id), true, false);
+          }
+          var temp = tree.getCheckedNodes(true);
+          console.log(temp);
+        }
+        tree.expandAll(true);
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
+
     }
   };
+}])
+*/
+
+.directive('roleauthtree', ['authService', function (authService) {
+  return {
+    restrict: 'A',
+    require: 'ngModel',
+    scope: {},
+    link: function ($scope, element, atts, ngModelCtrl) {
+      //TODO: 生成权限选择ztree 监控提交数据事件
+      $scope.tree = null;
+
+      // ngModelCtrl.$parsers.push(function (viewValue) {
+      //   console.log('in the front parsers');
+      //   return viewValue;
+      // });
+
+      //当modelValue和viewValue不一致时Angular会自动调用render方法
+      ngModelCtrl.$render = function () {
+
+        authService.getAuths()
+        .then(function (result) {
+          $scope.tree = $.fn.zTree.init(element, setting, result.data);
+          $scope.tree.expandAll(true);
+
+          //将modelValue的值转化为tree勾选
+          if ($scope.tree && ngModelCtrl.$modelValue) {
+            var _len = ngModelCtrl.$modelValue.length;
+            while (_len--) {
+              var _node = $scope.tree.getNodeByParam("_id", ngModelCtrl.$modelValue[_len]._id);
+              if (_node) {
+                $scope.tree.checkNode(_node, true, false);
+              }
+            }
+          }
+
+        })
+        .catch(function (err) {
+          console.error(err);
+        });
+
+      };
+
+
+
+      function onClick(e, treeId, treeNode) {
+        var ztree = $.fn.zTree.getZTreeObj(treeId);
+        ztree.expandNode(treeNode);
+      }
+
+      function onCheck(e, treeId, treeNode) {
+        $scope._checkNodes = $scope.tree.getCheckedNodes(true);
+        ngModelCtrl.$setViewValue($scope._checkNodes);
+
+      }
+
+      var setting = {
+        data: {
+          simpleData:{
+            enable: true,
+            idKey: "_id",
+            pIdKey: "parentID",
+            rootPId: null
+          },
+          key: {
+            name: "text"
+          }
+        },
+
+        check: {
+          enable: "true",
+          chkStyle: "checkbox"
+        },
+
+        view: {
+          dblClickExpand: false,
+          showLine: false
+        },
+
+        callback: {
+          onClick: onClick,
+          onCheck: onCheck
+        }
+      };
+
+
+    }//- end link
+  };//- end return
 }])
 
 .directive('usertable', ['$window', 'userService', function ($window, userService) {

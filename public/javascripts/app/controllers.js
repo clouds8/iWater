@@ -146,7 +146,15 @@ function ($scope, $uibModalInstance, authSelected, toBeSelectedParAuth, choosenP
     modalInstance.result
     .then(function (role) {
       $scope.selected = role;
-      roleService.postRole($scope.selected = role)
+      var addOrUpdate = null;
+
+      if (role._id) {
+        addOrUpdate = roleService.updateRole;
+      } else {
+        addOrUpdate = roleService.postRole;
+      }
+
+      addOrUpdate($scope.selected)
       .then(function (result) {
         $scope.$broadcast('refleshRoleTable');
       })
