@@ -4,7 +4,7 @@ angular.module('water.service', [])
   var neededRefleshed = false;
   return {
     getAuths: function () {
-      return $http.get('api/auths');
+      return $http.get('user/auths');
     },
     getNeededRefleshed: function () {
       return neededRefleshed;

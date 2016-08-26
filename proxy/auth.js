@@ -141,11 +141,25 @@ exports.getAll = function (callback) {
 
 
 
-exports.getById = function (id, cb) {
+function getById(id, cb) {
   Auth.findById(id, cb);
-};
+}
 
+exports.getById = getById;
 
+exports.getByIds = function (ids, callback) {
+  async.map(ids, function (id, cb) {
+    getById(id, cb);
+  }, function (err, results) {
+    if (err) {
+      callback(err);
+    } else {
+      console.log('****************');
+      console.log(results.length);
+      callback(null, results);
+    }
+  });
+}
 
 exports.delById = function (id, cb) {
   Auth.findByIdAndRemove(id, cb);

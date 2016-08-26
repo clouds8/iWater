@@ -10,6 +10,7 @@ var MongoStore = require('connect-mongo')(session);
 
 var api = require('./routes/api');
 var page = require('./routes/indexpage');
+var userApi = require('./routes/user.js');
 // var routes = require('./routes/index');
 // var business = require('./routes/business');
 // var sysmanage = require('./routes/system');
@@ -53,6 +54,7 @@ app.use('/', page);
 app.use('/api/login', loginApi);
 app.use('/api/logout', logoutApi);
 app.use('/api', api);
+app.use('/user', userApi);
 
 
 // catch 404 and forward to error handler

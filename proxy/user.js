@@ -1,5 +1,7 @@
 var User = require('../models/user').User;
 var Role = require('../models/role').Role;
+var roleDao = require('../proxy/role');
+var authDao = require('../proxy/auth');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
@@ -196,6 +198,80 @@ exports.getById = function (userID, callback) {
         select: "roleName"
     })
     .exec(callback);
+};
+
+exports.getUserAuthsSetById = function (userID, callback) {
+  User.findById(userID)
+    .exec(function (err, user) {
+      if (err) {
+        callback(err);
+      } else {
+        var roleIds = user.roles;
+        var auths = [];
+        var len = roleIds.length;
+        var iteratee = function (roleId, callback) {
+          Role.findById(roleId, function (err, role) {
+            if (err) {
+              callback(err);
+            } else {
+              callback(null, role.auths);
+            }
+          });
+        };
+        async.map(roleIds, function (roleId, cb) {
+          iteratee(roleId, cb);
+        }, function (err, results) {
+          var _len = results.length;
+          var authIdsSet = new Set();
+
+          while (_len--) {
+            console.log(results[_len]);
+            for (var value of results[_len]) {
+              console.log(typeof value);
+              console.log(value);
+              value = value.toString();
+              console.log(typeof value);
+              console.log(value);
+              if (!authIdsSet.has(value)) {
+                authIdsSet.add(value);
+                console.log(authIdsSet);
+              }
+            }
+            // auths = auths.concat(results[_len]);
+          }
+          console.log('in the end ');
+          console.log(authIdsSet);
+
+          authIdsSet = new Set([...authIdsSet].map(val => mongoose.Types.ObjectId(val)));
+
+          // console.log(auths.length);
+
+          // _len = auths.length;
+          // while (_len--) {
+          //   console.log(!authIdsSet.has[auths[_len]]);
+          //   if (!authIdsSet.has[auths[_len]]) {
+          //     authIdsSet.add(auths[_len]);
+          //   }
+          // }
+          // console.log([...authIdsSet].length);
+          console.log(typeof authIdsSet);
+          console.log('set size:' + authIdsSet.size);
+          var authArray = Array.from(authIdsSet);
+          console.log(authArray);
+          console.log('???????????');
+          authDao.getByIds(authArray, function (err, userAuths) {
+            if (err) {
+              callback(err);
+            } else {
+              console.log(userAuths);
+              callback(null, userAuths);
+            }
+          });
+        });
+      }
+
+    });
+
 };
 
 exports.delById = function (userID, callback) {

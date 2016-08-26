@@ -21,7 +21,8 @@ angular.module('water.directives', ['water.service'])
       $scope.$emit('reqForAuth');
       $scope.$on('menuNode', function (event, result) {
         if (!result) {
-          alert('未有权限');
+          // alert('未有权限');
+          console.log('未有权限');
         } else {
           var nodes = $.fn.zTree._z.data.transformTozTreeFormat(setting, result);
           element.treeview({

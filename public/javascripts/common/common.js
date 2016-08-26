@@ -37,7 +37,7 @@ app.directive('menu', [function ($scope) {
       $scope.$emit('reqForAuth');
       $scope.$on('menuNode', function (event, result) {
         if (!result) {
-          alert('未有权限');
+          console.log('未有权限');
         } else {
           var len = result.length;
           // console.log(len);

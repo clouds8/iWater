@@ -26,6 +26,7 @@ router.post('/', function (req, res) {
         return res.redirect('/');
       } else {
         console.log('password is not matched');
+        res.redirect('/html/login.html');
       }
     });
   });

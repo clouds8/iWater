@@ -1,5 +1,30 @@
 var express = require('express');
+var userDao = require('../proxy/user');
 var router = express.Router();
+
+
+// function requireAuthentication(req, res, next) {
+//   var _user = req.session.user;
+//   if (_user) {
+//     res.locals.user = _user;
+//     userDao.getUserAuthsSetById(_user._id, function (err, authSet) {
+//       if (err) {
+//         console.error(err);
+//         next(err);
+//       } else {
+//         console.log('show the baseUrl');
+//         console.log(req.baseUrl);
+//         console.log(authSet);
+//         next();
+//       }
+//     });
+//   } else {
+//     res.redirect('html/login.html');
+//
+//   }
+// }
+//
+// router.use(requireAuthentication);
 
 router.get('/', function (req, res, next) {
 
