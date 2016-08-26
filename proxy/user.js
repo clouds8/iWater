@@ -23,7 +23,7 @@ exports.getUsersAndCount = function (params, callback) {
   var options = {};
 
   //当size === 0 时返回所有记录
-  if (parseInt(params.size)!==0) {
+  if (parseInt(params.limit)!==0) {
     var offset = parseInt(params.offset) || 0;
     var size = parseInt(params.limit) || 10;
     options.limit = size;

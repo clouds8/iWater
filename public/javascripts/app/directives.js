@@ -572,7 +572,7 @@ angular.module('water.directives', ['water.service'])
         toolbar: "#toolbar",
         sidePagination: 'server',
         searchOnEnterKey: true,
-        pageList: [10, 25, 50 ,100],
+        pageList: [10, 25, 50, 100, 'All'],
         detailView: true,
         columns: columnsTempl,
         queryParams: queryParams,
@@ -601,10 +601,10 @@ angular.module('water.directives', ['water.service'])
           });
         }
       });
-      // $scope.$on('refleshAuthTable',function (event, result) {
-      //   element.bootstrapTable('destroy');
-      //   $scope.$emit('reqRoleTable');
-      // });
+
+      $scope.$on('refleshRoleTable',function (event, result) {
+        element.bootstrapTable('refresh', {silent: true});
+      });
     } //-  end link
   }; //- end return
 }])

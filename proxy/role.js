@@ -71,7 +71,7 @@ exports.getRolesAndCount = function (params, callback) {
   var options = {};
 
   //当size === 0 时返回所有记录
-  if (parseInt(params.offset)!==0) {
+  if (parseInt(params.limit)!==0) {
     var offset = parseInt(params.offset) || 0;
     var size = parseInt(params.limit) || 10;
     options.limit = size;
@@ -162,7 +162,10 @@ exports.add = function (role, callback) {
     var len = role.auths.length;
     var tempAuthsArray = [];
     while (len--) {
-      tempAuthsArray.push(new mongoose.Types.ObjectId(role.auths[len]));
+      var _id = role.auths[len]._id;
+      if (mongoose.Types.ObjectId.isValid(_id)) {
+        tempAuthsArray.push(mongoose.Types.ObjectId(_id));
+      }
     }
     role.auths = tempAuthsArray;
   }
