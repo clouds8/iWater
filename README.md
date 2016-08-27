@@ -8,7 +8,7 @@ Express + Angular1.5 + Bootstrap + Gulp + Mongodb
 前端BootstrapTable, BootstrapTree, Ztree, ui-router, ui-bootstrap, ui-select, sweetAlert.     
 后端Jade, Mongoose, Nodeman.  
 使用部分ES6语法.   
-Session使用Mongodb存储.  
+Session使用Mongodb持久化.  
 RestfulAPI.    
 单页.  
 
@@ -50,7 +50,7 @@ TODO:
   - [x] 服务端分页
 - [x] 用户登录
   - [x] 根据"用户-角色-权限"关联, 开放对应页面
-  - [x] 保存登录信息, 重启服务器后仍能使用session
+  - [x] session持久化, 重启服务器后仍能使用session
 - [x] 客户信息管理
   - [x] 客户信息列表
   - [ ] 多条件查找
