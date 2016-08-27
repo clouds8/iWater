@@ -5,7 +5,7 @@
 Express + Angular1.5 + Bootstrap + Gulp + Mongodb  
 
 其他: 
-Jade, Mongoose, BootstrapTable, BootstrapTree, Ztree, ui-router, ui-bootstrap, ui-select, Nodeman, 使用部分ES6语法.
+Jade, Mongoose, BootstrapTable, BootstrapTree, Ztree, ui-router, ui-bootstrap, ui-select, sweetAlert, Nodeman, 使用部分ES6语法.
 
 异步处理: 
 主要使用Async和Promise.
@@ -18,6 +18,14 @@ Session使用Mongodb存储.
 4. 用户登录后根据"用户-角色-权限"关联, 展现用户个人的页面.  
 5. 客户信息列表.  
 
+系统预览
+1. 用户管理
+![image](https://github.com/clouds8/iWater/images/user.png)
+2. 用户管理-编辑 
+3. 角色管理
+4. 角色管理-编辑
+5. 权限管理
+6. 权限管理-编辑
 
 TODO:   
 1. 用水性质管理  
