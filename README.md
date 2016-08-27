@@ -24,7 +24,7 @@ Session使用Mongodb存储.
 2. 用户管理-编辑     
 ![image](./images/userEdit.png)  
 3. 角色管理    
-![image](http://github.com/clouds8/iWater/images/role.png)    
+![image](http://raw.githubusercontent.com/clouds8/iWater/master/images/role.png)    
 4. 角色管理-编辑    
 ![image](http://github.com/clouds8/iWater/images/roleEdit.png)      
 5. 权限管理    
