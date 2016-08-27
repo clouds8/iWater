@@ -20,9 +20,9 @@ Session使用Mongodb存储.
 
 系统截图    
 1. 用户管理  
-![image](http://github.com/clouds8/iWater/images/user.png)    
+![image](./images/user.png)    
 2. 用户管理-编辑     
-![image](http://github.com/clouds8/iWater/images/userEdit.png)  
+![image](./images/userEdit.png)  
 3. 角色管理    
 ![image](http://github.com/clouds8/iWater/images/role.png)    
 4. 角色管理-编辑    
