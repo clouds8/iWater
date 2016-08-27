@@ -22,13 +22,13 @@ Session使用Mongodb存储.
 1. 用户管理  
 ![image](./images/user.png)    
 2. 用户管理-编辑     
-![image](./images/userEdit.png)  
+![image](https://raw.githubusercontent.com/clouds8/iWater/master/)  
 3. 角色管理    
 ![image](http://raw.githubusercontent.com/clouds8/iWater/master/images/role.png)    
 4. 角色管理-编辑    
 ![image](http://github.com/clouds8/iWater/images/roleEdit.png)      
 5. 权限管理    
-![image](http://github.com/clouds8/iWater/images/auth.png)    
+![image](https://github.com/clouds8/iWater/blob/master/images/auths.png)    
 6. 权限管理-编辑  
 ![image](http://github.com/clouds8/iWater/images/authEdit.png)    
 
