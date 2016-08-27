@@ -1,10 +1,10 @@
 # iWater
 Node.js实现水务管理系统
 
-主要架构: 
+主要架构:   
 Express + Angular1.5 + Bootstrap + Gulp + Mongodb  
 
-其他: 
+其他:   
 前端BootstrapTable, BootstrapTree, Ztree, ui-router, ui-bootstrap, ui-select, sweetAlert.     
 后端Jade, Mongoose, Nodeman.  
 使用部分ES6语法.   
