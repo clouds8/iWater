@@ -20,17 +20,17 @@ Session使用Mongodb存储.
 
 系统截图    
 1. 用户管理  
-![image](https://github.com/clouds8/iWater/images/user.png)    
-2. 用户管理-编辑   
-![image](https://github.com/clouds8/iWater/images/userEdit.png)
-3. 角色管理  
-![image](https://github.com/clouds8/iWater/images/role.png)  
-4. 角色管理-编辑  
-![image](https://github.com/clouds8/iWater/images/roleEdit.png)    
-5. 权限管理  
-![image](https://github.com/clouds8/iWater/images/auth.png)  
+![image](http://github.com/clouds8/iWater/images/user.png)    
+2. 用户管理-编辑     
+![image](http://github.com/clouds8/iWater/images/userEdit.png)  
+3. 角色管理    
+![image](http://github.com/clouds8/iWater/images/role.png)    
+4. 角色管理-编辑    
+![image](http://github.com/clouds8/iWater/images/roleEdit.png)      
+5. 权限管理    
+![image](http://github.com/clouds8/iWater/images/auth.png)    
 6. 权限管理-编辑  
-![image](https://github.com/clouds8/iWater/images/authEdit.png)  
+![image](http://github.com/clouds8/iWater/images/authEdit.png)    
 
 TODO:   
 1. 用水性质管理  
