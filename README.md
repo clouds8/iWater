@@ -41,6 +41,12 @@ RestfulAPI.
 /proxy      封装操作数据库的方法,相当于Service和Dao结合  
 /public     静态资源  
 /routes     页面解析和API  
+  --indexpages.js    页面解析
+  --api.js           RestfulAPI
+  --login.js         用户登录(将会移到user.js)
+  --user.js          用户个人页面相关
+  --其他.js          无视(懒一直没删, 功能已放到上面几个js中)
+  
 /view       jade模板  
 config.json     数据库路径  
 app.js      主程序  
