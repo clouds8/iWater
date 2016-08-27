@@ -36,14 +36,14 @@ RestfulAPI.
 
 代码目录注释:    
 /bin  
-/config  配置文件目录, mongoose连接  
-/models  Mongoose schema定义  
-/proxy   封装操作数据库的方法,相当于Service和Dao结合  
-/public  静态资源  
-/routes  页面解析和API  
-/view    jade模板  
-config.json  数据库路径  
-app.js   主程序  
+/config     配置文件目录, mongoose连接  
+/models     Mongoose schema定义  
+/proxy      封装操作数据库的方法,相当于Service和Dao结合  
+/public     静态资源  
+/routes     页面解析和API  
+/view       jade模板  
+config.json     数据库路径  
+app.js      主程序  
 
 TODO:
 - [x] 权限管理
