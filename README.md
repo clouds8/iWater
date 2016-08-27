@@ -20,27 +20,27 @@ Session使用Mongodb存储.
 2. 用户管理-编辑     
 ![image](https://github.com/clouds8/iWater/blob/master/images/usersEdit.png)  
 3. 角色管理    
-![image](https://github.com/clouds8/iWater/blob/master/images/role.png)    
+![image](https://github.com/clouds8/iWater/blob/master/images/roles.png)    
 4. 角色管理-编辑    
-![image](https://github.com/clouds8/iWater/blob/master/images/roleEdit.png)      
+![image](https://github.com/clouds8/iWater/blob/master/images/rolesEdit.png)      
 5. 权限管理    
 ![image](https://github.com/clouds8/iWater/blob/master/images/auths.png)    
 6. 权限管理-编辑  
 ![image](https://github.com/clouds8/iWater/blob/master/images/authsEdit.png)    
 
 TODO:
--[x]权限管理
--[x]角色管理
-  -[x]角色分配权限  
--[x]用户管理
-  -[x]用户分配角色
-  -[x]重置密码  
--[x]用户登录
-  -[x]根据"用户-角色-权限"关联, 开放对应页面
-  -[x]保存登录信息
+- [x]权限管理
+- [x]角色管理
+  - [x]角色分配权限  
+- [x]用户管理
+  - [x]用户分配角色
+  - [x]重置密码  
+- [x]用户登录
+  - [x]根据"用户-角色-权限"关联, 开放对应页面
+  - [x]保存登录信息
 -[x]客户信息管理
--[ ]用水性质管理  
--[ ]账期管理  
--[ ]应收管理  
--[ ]实收管理  
--[ ]客户缴费  
+- [ ]用水性质管理  
+- [ ]账期管理  
+- [ ]应收管理  
+- [ ]实收管理  
+- [ ]客户缴费  
